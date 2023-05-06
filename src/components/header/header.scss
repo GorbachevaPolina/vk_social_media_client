@@ -1,0 +1,16 @@
+@import "../../styles/mixins.scss";
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 40px;
+
+    img {
+        height: 40px;
+    }
+
+    button {
+        @include btn;
+    }
+}

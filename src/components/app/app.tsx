@@ -1,15 +1,24 @@
 import React from 'react';
 import './app.scss';
-import { HashRouter, Switch } from 'react-router-dom'
+import { Switch, useLocation } from 'react-router-dom'
 import Register from '../../pages/register';
 import Login from '../../pages/login';
 import Profile from '../../pages/profile';
 import { ProtectedRoute } from '../protected-route';
+import Header from '../header/header';
 
 function App() {
+  const location = useLocation();
+  console.log(location)
   return (
     <>
-      <HashRouter>
+      {/* <HashRouter> */}
+        {/* {location.pathname === '/register' && location.pathname === '/login' && <Header />} */}
+        {
+          location.pathname === '/register' || location.pathname === '/login' ?
+          null :
+          <Header />
+        }
         <Switch>
           <ProtectedRoute onlyForAuth={true} path="/profile" exact={true}>
             <Profile />
@@ -21,7 +30,7 @@ function App() {
             <Login />
           </ProtectedRoute>
         </Switch>
-      </HashRouter>
+      {/* </HashRouter> */}
     </>
   );
 }

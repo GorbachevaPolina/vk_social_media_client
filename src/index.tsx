@@ -6,6 +6,7 @@ import { Provider } from 'react-redux';
 import thunk from 'redux-thunk';
 import { compose, createStore, applyMiddleware  } from 'redux';
 import { rootReducer } from './services/reducers/rootReducer';
+import { HashRouter } from 'react-router-dom';
 
 const composeEnhancers =
 typeof window === 'object' &&
@@ -22,7 +23,9 @@ const root = ReactDOM.createRoot(
 root.render(
   <React.StrictMode>
     <Provider store={store}>
+      <HashRouter>
       <App />
+      </HashRouter>
     </Provider>
   </React.StrictMode>
 );

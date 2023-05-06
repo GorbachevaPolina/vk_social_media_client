@@ -1,3 +1,5 @@
+@import "./variables.scss";
+
 @mixin auth-input {
     border: none;
     border-radius: 5px;
@@ -7,17 +9,26 @@
 }
 
 
-@mixin auth-btn {
+@mixin btn {
     background: $dark-blue;
         color: #fff;
         border: none;
         border-radius: 50px;
         padding: 10px 20px;
-        margin-top: 20px;
+        // margin-top: 20px;
 
         &:hover {
             cursor: pointer;
             background: $green;
             color:$dark-blue;
         }
+}
+
+@mixin content-container {
+    display: flex;
+    justify-content: space-between;
+    width: 90%;
+    margin: 40px auto;
+    gap: 40px;
+    // height: 100%;
 }

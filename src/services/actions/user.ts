@@ -16,6 +16,8 @@ export const GET_USER_REQUEST: "GET_USER_REQUEST" = "GET_USER_REQUEST"
 export const GET_USER_SUCCESS: "GET_USER_SUCCESS" = "GET_USER_SUCCESS"
 export const GET_USER_FAILED: "GET_USER_FAILED" = "GET_USER_FAILED"
 
+export const LOGOUT: "LOGOUT" = "LOGOUT"
+
 export interface IRegisterUserRequestAction {
     readonly type: typeof REGISTER_USER_REQUEST;
 }
@@ -55,6 +57,10 @@ export interface IGetUserSuccessAction {
     readonly user: TUserInfo
 }
 
+export interface ILogout {
+    readonly type: typeof LOGOUT
+}
+
 export type TUserActions = 
     IRegisterUserFailedAction |
     IRegisterUserRequestAction |
@@ -64,7 +70,8 @@ export type TUserActions =
     ILoginUserSuccessAction |
     IGetUserFailedAction |
     IGetUserRequestAction |
-    IGetUserSuccessAction;
+    IGetUserSuccessAction |
+    ILogout;
 
 export function register(user: TRegInfo): AppThunk {
     return function(dispatch: AppDispatch) {

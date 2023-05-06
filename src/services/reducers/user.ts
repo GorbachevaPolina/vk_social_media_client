@@ -1,4 +1,4 @@
-import { GET_USER_FAILED, GET_USER_REQUEST, GET_USER_SUCCESS, LOGIN_USER_FAILED, LOGIN_USER_REQUEST, LOGIN_USER_SUCCESS, REGISTER_USER_FAILED, REGISTER_USER_REQUEST, REGISTER_USER_SUCCESS, TUserActions } from "../actions/user"
+import { GET_USER_FAILED, GET_USER_REQUEST, GET_USER_SUCCESS, LOGIN_USER_FAILED, LOGIN_USER_REQUEST, LOGIN_USER_SUCCESS, LOGOUT, REGISTER_USER_FAILED, REGISTER_USER_REQUEST, REGISTER_USER_SUCCESS, TUserActions } from "../actions/user"
 import { TUserInfo } from "../types/user"
 
 type TUserState = {
@@ -79,6 +79,11 @@ export const userReducer = (state = initialState, action: TUserActions): TUserSt
             return {
                 ...initialState,
                 user: action.user
+            }
+        }
+        case LOGOUT: {
+            return {
+                ...initialState
             }
         }
         default: {

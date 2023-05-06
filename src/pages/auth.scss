@@ -22,7 +22,8 @@
     }
 
     button {
-        @include auth-btn;
+        @include btn;
+        margin-top: 20px;
     }
 
     p {
