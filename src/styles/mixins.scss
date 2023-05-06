@@ -1,0 +1,23 @@
+@mixin auth-input {
+    border: none;
+    border-radius: 5px;
+    width: 60%;
+    padding: 10px 20px;
+    margin-top: 20px;
+}
+
+
+@mixin auth-btn {
+    background: $dark-blue;
+        color: #fff;
+        border: none;
+        border-radius: 50px;
+        padding: 10px 20px;
+        margin-top: 20px;
+
+        &:hover {
+            cursor: pointer;
+            background: $green;
+            color:$dark-blue;
+        }
+}
