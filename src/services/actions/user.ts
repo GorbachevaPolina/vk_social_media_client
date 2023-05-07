@@ -73,7 +73,7 @@ export type TUserActions =
     IGetUserSuccessAction |
     ILogout;
 
-export function register(user: TRegInfo): AppThunk {
+export function register(user: FormData): AppThunk {
     return function(dispatch: AppDispatch) {
         dispatch({
             type: REGISTER_USER_REQUEST
@@ -82,10 +82,10 @@ export function register(user: TRegInfo): AppThunk {
             `${URL}/api/auth/register`,
             {
                 method: "POST",
-                headers: {
-                    "Content-Type": "application/json"
-                },
-                body: JSON.stringify(user)
+                // headers: {
+                //     "Content-Type": "application/json"
+                // },
+                body: user
             }
         )
         .then(checkResponse)

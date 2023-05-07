@@ -24,6 +24,7 @@ export type TRegInfo = {
     age: string;
     city: string;
     university: string;
+    profilePicture: string | File;
 }
 
 export type TLoginInfo = {

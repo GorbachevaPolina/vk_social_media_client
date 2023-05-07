@@ -26,7 +26,12 @@ const Profile: FC = () => {
             <Navigation />
             <div className='profile-content-container'>
                 <section className='user-info'>
-                    <img src={noProfilePic} alt="no profile picture"/>
+                    {/* <img src={noProfilePic} alt="no profile picture"/> */}
+                    {
+                        user?.profilePicture ?
+                            <img src={`http://localhost:8800/${user.profilePicture}`} alt="profile"/> :
+                            <img src={noProfilePic} alt="no profile"/>
+                    }
                     <div>
                         <p className='username'>{user?.username}</p>
                         <p className='description'>Город: {user?.city}</p>
