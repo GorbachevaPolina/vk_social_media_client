@@ -6,6 +6,7 @@ import Login from '../../pages/login';
 import Profile from '../../pages/profile';
 import { ProtectedRoute } from '../protected-route';
 import Header from '../header/header';
+import Friends from '../../pages/friends';
 
 function App() {
   const location = useLocation();
@@ -21,6 +22,9 @@ function App() {
         <Switch>
           <ProtectedRoute onlyForAuth={true} path="/profile" exact={true}>
             <Profile />
+          </ProtectedRoute>
+          <ProtectedRoute onlyForAuth={true} path="/friends" exact={true}>
+            <Friends />
           </ProtectedRoute>
           <ProtectedRoute onlyForAuth={false} path="/register" exact={true}>
             <Register />

@@ -1,0 +1,10 @@
+@import '../styles/mixins.scss';
+@import '../styles/variables.scss';
+
+.friends-container {
+    @include content-container;
+
+    .friends-content-container {
+        @include right-side-content-container;
+    }
+}

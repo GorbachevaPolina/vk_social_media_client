@@ -6,21 +6,21 @@ const Navigation: FC = () => {
     return(
         <nav>
             <ul>
-                <li>
-                    <Link to="/profile">
+                <Link to="/profile">
+                    <li>
                         Профиль
-                    </Link>
-                </li>
-                <li>
-                    <Link to="/friends">
+                    </li>
+                </Link>
+                <Link to="/friends">
+                    <li>
                         Друзья
-                    </Link>
-                </li>
-                <li>
-                    <Link to="/">
+                    </li>
+                </Link>
+                <Link to="/">
+                    <li>
                         Новости
-                    </Link>
-                </li>
+                    </li>
+                </Link>
             </ul>
         </nav>
     )
