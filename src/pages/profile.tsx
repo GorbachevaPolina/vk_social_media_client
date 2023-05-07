@@ -3,12 +3,19 @@ import { useSelector, useDispatch } from '../services/types/store'
 import Navigation from '../components/navigation/navigation'
 import './profile.scss'
 import noProfilePic from '../images/no-profile-pic.svg'
-import { getUserPosts } from '../services/actions/user-posts'
+import { getUserPosts, like } from '../services/actions/user-posts'
+import CreatePost from '../components/create-post/create-post'
+import filledHeart from '../images/filled-heart.svg'
+import heart from '../images/heart.svg'
 
 const Profile: FC = () => {
     const { user } = useSelector((store) => store.user)
     const { posts } = useSelector((store) => store.userPosts)
     const dispatch = useDispatch()
+
+    const handleLike = (id: string) => {
+        dispatch(like(id))
+    }
 
     useEffect(() => {
         dispatch(getUserPosts())
@@ -29,12 +36,20 @@ const Profile: FC = () => {
                 </section>
                 <section className='user-posts'>
                     <h1>Ваши посты:</h1>
+                    <CreatePost />
                     {posts && posts.map((item) => {
                         return (
                             <div key={item._id} className='post'>
                                 <p>{item.description}</p>
-                                {item.image && <img src={item.image} alt="post"/>}
-                                <span>{item.likes.length}</span>
+                                {item.image && <img src={`http://localhost:8800/${item.image}`} alt="post"/>}
+                                <div className='likes'>
+                                    <span>{item.likes.length}</span>
+                                    <img 
+                                        src={item.likes.includes(user!._id) ? filledHeart : heart}
+                                        alt="like"
+                                        onClick={() => handleLike(item._id)}
+                                    />
+                                </div>
                             </div>
                         )
                     })}

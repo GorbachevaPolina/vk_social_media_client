@@ -9,7 +9,6 @@ import Header from '../header/header';
 
 function App() {
   const location = useLocation();
-  console.log(location)
   return (
     <>
       {/* <HashRouter> */}
