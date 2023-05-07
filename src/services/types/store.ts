@@ -3,11 +3,12 @@ import { TypedUseSelectorHook, useDispatch as dispatchHook, useSelector as selec
 import { store } from '../..';
 import { TUserActions } from '../actions/user';
 import { TUserPostActions } from '../actions/user-posts';
+import { TFriendsActions } from '../actions/friends';
 
 export type RootState = ReturnType<typeof store.getState>
 
 export type TApplicationActions = 
-    TUserActions | TUserPostActions;
+    TUserActions | TUserPostActions | TFriendsActions;
 
 export type AppThunk<ReturnType = void> = ThunkAction<ReturnType, RootState, unknown, TApplicationActions>
 export type AppDispatch = <TReturnType>(action: TApplicationActions | AppThunk) => TReturnType

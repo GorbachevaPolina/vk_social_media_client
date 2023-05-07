@@ -6,5 +6,31 @@
 
     .friends-content-container {
         @include right-side-content-container;
+
+        .friend-info {
+            display: flex;
+            align-items: center;
+            background: #fff;
+            margin-bottom: 10px;
+            border-radius: 10px;
+            padding: 10px 20px;
+
+            img {
+                height: 40px;
+                width: 40px;
+                border-radius: 50%;
+                object-fit: cover;
+                margin-right: 10px;
+            }
+            button {
+                @include btn;
+                margin-left: auto;
+            }
+            &:hover {
+                cursor: pointer;
+                background: $blue;
+                border: 1px solid $dark-blue;
+            }
+        }
     }
 }
