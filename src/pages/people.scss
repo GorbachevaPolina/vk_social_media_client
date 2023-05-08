@@ -45,5 +45,18 @@
             padding: 10px 20px;
             @include person-info;
         }
+
+        .search-bar {
+            input {
+                width: 100%;
+                color: $dark-blue;
+                height: 30px;
+                font-size: 15px;
+                padding-left: 10px;
+                border: 1px solid $dark-blue;
+                border-radius: 5px;
+                box-sizing: border-box;
+            }
+        }
     }
 }

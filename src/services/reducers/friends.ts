@@ -1,4 +1,4 @@
-import { DELETE_FRIEND_FAILED, DELETE_FRIEND_REQUEST, DELETE_FRIEND_SUCCESS, GET_FRIENDS_FAILED, GET_FRIENDS_REQUEST, GET_FRIENDS_SUCCESS, GET_PEOPLE_FAILED, GET_PEOPLE_REQUEST, GET_PEOPLE_SUCCESS, TFriendsActions } from "../actions/friends";
+import { ACCEPT_FRIEND_REQUEST, CANCEL_FRIEND_REQUEST, DELETE_FRIEND_FAILED, DELETE_FRIEND_REQUEST, DELETE_FRIEND_SUCCESS, GET_FRIENDS_FAILED, GET_FRIENDS_REQUEST, GET_FRIENDS_SUCCESS, GET_PEOPLE_FAILED, GET_PEOPLE_REQUEST, GET_PEOPLE_SUCCESS, SEND_FRIEND_REQUEST, TFriendsActions } from "../actions/friends";
 import { TFriends } from "../types/friends"
 
 type TFriendsState = {
@@ -91,6 +91,26 @@ export const friendsReducer = (state = initialState, action: TFriendsActions): T
                 isPeopleRequest: false,
                 friends_req: action.friends_req,
                 friends_pending: action.friends_pending
+            }
+        }
+        case ACCEPT_FRIEND_REQUEST: {
+            const newFriend = state.friends_req?.find(item => item._id === action.friendId)
+            return {
+                ...state,
+                friends: state.friends && [...state.friends, (newFriend as TFriends)],
+                friends_req: state.friends_req && state.friends_req.filter(item => item._id !== action.friendId)
+            }
+        }
+        case CANCEL_FRIEND_REQUEST: {
+            return {
+                ...state,
+                friends_pending: state.friends_pending && state.friends_pending.filter(item => item._id !== action.friendId)
+            }
+        }
+        case SEND_FRIEND_REQUEST: {
+            return {
+                ...state,
+                friends_pending: state.friends_pending ? [...state.friends_pending, action.person] : [action.person]
             }
         }
         default: {

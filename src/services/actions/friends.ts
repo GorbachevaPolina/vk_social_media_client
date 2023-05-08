@@ -16,6 +16,10 @@ export const GET_PEOPLE_REQUEST: "GET_PEOPLE_REQUEST" = "GET_PEOPLE_REQUEST"
 export const GET_PEOPLE_FAILED: "GET_PEOPLE_FAILED" = "GET_PEOPLE_FAILED"
 export const GET_PEOPLE_SUCCESS: "GET_PEOPLE_SUCCESS" = "GET_PEOPLE_SUCCESS"
 
+export const ACCEPT_FRIEND_REQUEST: "ACCEPT_FRIEND_REQUEST" = "ACCEPT_FRIEND_REQUEST"
+export const CANCEL_FRIEND_REQUEST: "CANCEL_FRIEND_REQUEST" = "CANCEL_FRIEND_REQUEST"
+export const SEND_FRIEND_REQUEST: "SEND_FRIEND_REQUEST" = "SEND_FRIEND_REQUEST"
+
 export interface IGetFriendsRequest {
     readonly type: typeof GET_FRIENDS_REQUEST
 }
@@ -47,6 +51,18 @@ export interface IGetPeopleSuccess {
     readonly friends_req: TFriends[],
     readonly friends_pending: TFriends[]
 }
+export interface IAcceptFriendRequest {
+    readonly type: typeof ACCEPT_FRIEND_REQUEST,
+    readonly friendId: string
+}
+export interface ICancelFriendRequest {
+    readonly type: typeof CANCEL_FRIEND_REQUEST,
+    readonly friendId: string
+}
+export interface ISendFriendRequest {
+    readonly type: typeof SEND_FRIEND_REQUEST,
+    readonly person: TFriends
+}
 
 export type TFriendsActions = 
     IGetFriendsFailed |
@@ -57,7 +73,10 @@ export type TFriendsActions =
     IDeleteFriendSuccess |
     IGetPeopleFailed |
     IGetPeopleRequest |
-    IGetPeopleSuccess;
+    IGetPeopleSuccess |
+    IAcceptFriendRequest |
+    ICancelFriendRequest |
+    ISendFriendRequest;
 
 export function getAllFriends(): AppThunk {
     return function(dispatch: AppDispatch) {
@@ -159,5 +178,76 @@ export function getAllPeople(): AppThunk {
         .catch((error) => dispatch({
             type: GET_PEOPLE_FAILED
         }))
+    }
+}
+
+export function sendFriendReq(person: TFriends): AppThunk {
+    return function(dispatch: AppDispatch) {
+        let token = getCookie('token')
+        if(token) {
+            fetch(
+                `${URL}/api/users/${person._id}/send-friend-request`,
+                {
+                    method: "PUT",
+                    headers: {
+                        "token": token
+                    }
+                }
+            )
+            .then(checkResponse)
+            .then((result) => dispatch({
+                type: SEND_FRIEND_REQUEST,
+                person: person
+            }))
+            .catch((error) => console.error(error.message))
+        }
+    }
+}
+
+export function addFriend(id: string): AppThunk {
+    return function(dispatch: AppDispatch) {
+        let token = getCookie('token')
+        if(token) {
+            fetch(
+                `${URL}/api/users/${id}/accept-friend-request`,
+                {
+                    method: "PUT",
+                    headers: {
+                        "token": token
+                    }
+                }
+            )
+            .then(checkResponse)
+            .then((result) => dispatch({
+                type: ACCEPT_FRIEND_REQUEST,
+                friendId: id
+            }))
+            .catch((error) => console.error(error.message))
+        }
+    }
+}
+
+export function cancelFriendReq(id: string): AppThunk {
+    return function(dispatch: AppDispatch) {
+        let token = getCookie('token')
+        if(token) {
+            fetch(
+                `${URL}/api/users/${id}/cancel-friend-request`,
+                {
+                    method: "PUT",
+                    headers: {
+                        "token": token
+                    }
+                }
+            )
+            .then(checkResponse)
+            .then((result) => {
+                dispatch({
+                    type: CANCEL_FRIEND_REQUEST,
+                    friendId: id
+                })
+            })
+            .catch((error) => console.error(error.message))
+        }
     }
 }
