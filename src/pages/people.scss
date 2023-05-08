@@ -1,0 +1,49 @@
+@import '../styles/mixins.scss';
+@import '../styles/variables.scss';
+
+.people-container {
+    @include content-container;
+
+    .people-content-container {
+        @include right-side-content-container;
+
+        .dropdown {
+            display: flex;
+            gap: 10px;
+            border: 1px solid $dark-blue;
+            border-radius: 5px;
+            padding: 10px 20px;
+            margin-top: 10px;
+            line-height: 30px;
+            font-weight: 600;
+
+            .number {
+                background: $green;
+                border-radius: 50%;
+                display: inline-block;
+                width: 30px;
+                height: 30px;
+                text-align: center;
+            }
+
+            .arrow-down {
+                margin-left: auto;
+            }
+
+            &:hover {
+                cursor: pointer;
+                background: $dark-blue;
+                color: #fff;
+                .number {
+                    color: $dark-blue;
+                }
+            }
+        }
+
+        .person {
+            background: #fff;
+            padding: 10px 20px;
+            @include person-info;
+        }
+    }
+}

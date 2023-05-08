@@ -16,6 +16,11 @@ const Navigation: FC = () => {
                         Друзья
                     </li>
                 </Link>
+                <Link to="/people">
+                    <li>
+                        Люди
+                    </li>
+                </Link>
                 <Link to="/">
                     <li>
                         Новости

@@ -12,6 +12,10 @@ export const DELETE_FRIEND_REQUEST: "DELETE_FRIEND_REQUEST" = "DELETE_FRIEND_REQ
 export const DELETE_FRIEND_FAILED: "DELETE_FRIEND_FAILED" = "DELETE_FRIEND_FAILED"
 export const DELETE_FRIEND_SUCCESS: "DELETE_FRIEND_SUCCESS" = "DELETE_FRIEND_SUCCESS"
 
+export const GET_PEOPLE_REQUEST: "GET_PEOPLE_REQUEST" = "GET_PEOPLE_REQUEST"
+export const GET_PEOPLE_FAILED: "GET_PEOPLE_FAILED" = "GET_PEOPLE_FAILED"
+export const GET_PEOPLE_SUCCESS: "GET_PEOPLE_SUCCESS" = "GET_PEOPLE_SUCCESS"
+
 export interface IGetFriendsRequest {
     readonly type: typeof GET_FRIENDS_REQUEST
 }
@@ -32,6 +36,17 @@ export interface IDeleteFriendSuccess {
     readonly type: typeof DELETE_FRIEND_SUCCESS,
     readonly friendId: string
 }
+export interface IGetPeopleRequest {
+    readonly type: typeof GET_PEOPLE_REQUEST
+}
+export interface IGetPeopleFailed {
+    readonly type: typeof GET_PEOPLE_FAILED
+}
+export interface IGetPeopleSuccess {
+    readonly type: typeof GET_PEOPLE_SUCCESS,
+    readonly friends_req: TFriends[],
+    readonly friends_pending: TFriends[]
+}
 
 export type TFriendsActions = 
     IGetFriendsFailed |
@@ -39,7 +54,10 @@ export type TFriendsActions =
     IGetFriendsSuccess |
     IDeleteFriendFailed |
     IDeleteFriendRequest |
-    IDeleteFriendSuccess;
+    IDeleteFriendSuccess |
+    IGetPeopleFailed |
+    IGetPeopleRequest |
+    IGetPeopleSuccess;
 
 export function getAllFriends(): AppThunk {
     return function(dispatch: AppDispatch) {
@@ -105,6 +123,41 @@ export function deleteFriendReq(friendId: string): AppThunk {
         })
         .catch((error) => dispatch({
             type: DELETE_FRIEND_FAILED
+        }))
+    }
+}
+
+export function getAllPeople(): AppThunk {
+    return function(dispatch: AppDispatch) {
+        let token = getCookie('token')
+        if(!token) {
+            dispatch({
+                type: GET_PEOPLE_FAILED
+            })
+            return;
+        }
+        dispatch({
+            type: GET_PEOPLE_REQUEST
+        })
+        fetch(
+            `${URL}/api/users/people/all`,
+            {
+                method: "GET",
+                headers: {
+                    "token": token
+                }
+            }
+        )
+        .then(checkResponse)
+        .then((result) => {
+            dispatch({
+                type: GET_PEOPLE_SUCCESS,
+                friends_pending: result.friends_pending,
+                friends_req: result.friends_req
+            })
+        })
+        .catch((error) => dispatch({
+            type: GET_PEOPLE_FAILED
         }))
     }
 }

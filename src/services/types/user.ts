@@ -2,8 +2,6 @@ export type TUserInfo = {
     "_id": string;
     "username": string;
     "profilePicture": string;
-    "friends": string[];
-    "friends_req": string[];
     "age": string;
     "city": string;
     "university": string;
