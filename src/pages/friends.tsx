@@ -4,6 +4,7 @@ import Navigation from "../components/navigation/navigation";
 import './friends.scss'
 import { deleteFriendReq, getAllFriends } from "../services/actions/friends";
 import noProfilePic from '../images/no-profile-pic.svg'
+import { Link } from "react-router-dom";
 
 const Friends: FC = () => {
     const dispatch = useDispatch()
@@ -30,7 +31,7 @@ const Friends: FC = () => {
                                         <img src={`http://localhost:8800/${friend.profilePicture}`} alt="profile"/> :
                                         <img src={noProfilePic} alt="no profile"/>
                                 }
-                                <p>{friend.username}</p>
+                                <Link to={`/${friend._id}/profile`}><p>{friend.username}</p></Link>
                                 <button type="button" onClick={() => deleteFriend(friend._id)}>Удалить из друзей</button>
                             </div>
                         )

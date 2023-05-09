@@ -6,6 +6,7 @@ import { addFriend, getAllPeople, cancelFriendReq, deleteFriendReq, sendFriendRe
 import noProfilePic from '../images/no-profile-pic.svg'
 import { URL } from '../services/utils/URL';
 import { TFriends } from '../services/types/friends';
+import { Link } from 'react-router-dom';
 
 const People: FC = () => {
     const dispatch = useDispatch();
@@ -77,7 +78,7 @@ const People: FC = () => {
                                                     <img src={`http://localhost:8800/${person.profilePicture}`} alt="profile"/> :
                                                     <img src={noProfilePic} alt="no profile"/>
                                             }
-                                            <p>{person.username}</p>
+                                            <Link to={`/${person._id}/profile`}><p>{person.username}</p></Link>
                                             <button type="button" onClick={() => addToFriends(person._id)}>Добавить в друзья</button>
                                         </div>
                                     )
@@ -105,7 +106,7 @@ const People: FC = () => {
                                                     <img src={`http://localhost:8800/${person.profilePicture}`} alt="profile"/> :
                                                     <img src={noProfilePic} alt="no profile"/>
                                             }
-                                            <p>{person.username}</p>
+                                            <Link to={`/${person._id}/profile`}><p>{person.username}</p></Link>
                                             <button type="button" onClick={() => cancelFriendRequest(person._id)}>Отменить</button>
                                         </div>
                                     )
@@ -121,7 +122,7 @@ const People: FC = () => {
                                             <img src={`http://localhost:8800/${person.profilePicture}`} alt="profile"/> :
                                             <img src={noProfilePic} alt="no profile"/>
                                     }
-                                    <p>{person.username}</p>
+                                    <Link to={`/${person._id}/profile`}><p>{person.username}</p></Link>
                                     {
                                         friends?.find(item => item._id === person._id) ? 
                                             <button type="button" onClick={() => deleteFriend(person._id)}>Удалить из друзей</button> :
