@@ -30,7 +30,6 @@ const Timeline: FC = () => {
 
     const fetchPosts = async () => {
         let res = await getTimeline(offset);
-        console.log(res.length)
         setPosts([...posts, ...res])
         setOffset(prev=>prev+5)
         setHasMore(res.length > 0)
