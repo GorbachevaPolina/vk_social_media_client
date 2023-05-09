@@ -47,19 +47,7 @@
             padding: 20px 30px;
             border-radius: 10px;
             .likes {
-                display: flex;
-                justify-content: flex-end;
-                span, img {
-                    vertical-align: middle;
-                }
-                span {
-                    margin-right: 5px;
-                }
-                img {
-                    &:hover {
-                        cursor: pointer;
-                    }
-                }
+                @include likes;
             }
             img {
                 max-width: 100%;

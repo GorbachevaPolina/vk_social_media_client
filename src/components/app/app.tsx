@@ -9,6 +9,7 @@ import Header from '../header/header';
 import Friends from '../../pages/friends';
 import People from '../../pages/people';
 import OtherProfile from '../../pages/other-profile';
+import Timeline from '../../pages/timeline';
 
 function App() {
   const location = useLocation();
@@ -33,6 +34,9 @@ function App() {
           </ProtectedRoute>
           <ProtectedRoute onlyForAuth={true} path="/people" exact={true}>
             <People />
+          </ProtectedRoute>
+          <ProtectedRoute onlyForAuth={true} path="/" exact={true}>
+            <Timeline />
           </ProtectedRoute>
           <ProtectedRoute onlyForAuth={false} path="/register" exact={true}>
             <Register />

@@ -73,3 +73,19 @@
                 color: inherit;
             }
 }
+
+@mixin likes {
+        display: flex;
+        justify-content: flex-end;
+        span, img {
+            vertical-align: middle;
+        }
+        span {
+            margin-right: 5px;
+        }
+        img {
+            &:hover {
+                cursor: pointer;
+            }
+        }
+}

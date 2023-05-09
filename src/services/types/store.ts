@@ -5,11 +5,12 @@ import { TUserActions } from '../actions/user';
 import { TUserPostActions } from '../actions/user-posts';
 import { TFriendsActions } from '../actions/friends';
 import { TOtherUserActions } from '../actions/other-profile';
+import { TTimelineActions } from '../actions/timeline';
 
 export type RootState = ReturnType<typeof store.getState>
 
 export type TApplicationActions = 
-    TUserActions | TUserPostActions | TFriendsActions | TOtherUserActions;
+    TUserActions | TUserPostActions | TFriendsActions | TOtherUserActions | TTimelineActions;
 
 export type AppThunk<ReturnType = void> = ThunkAction<ReturnType, RootState, unknown, TApplicationActions>
 export type AppDispatch = <TReturnType>(action: TApplicationActions | AppThunk) => TReturnType

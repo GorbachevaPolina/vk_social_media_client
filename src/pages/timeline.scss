@@ -1,0 +1,53 @@
+@import '../styles/mixins.scss';
+@import '../styles/variables.scss';
+
+.timeline-container {
+    @include content-container;
+
+    .timeline-content-container {
+        @include right-side-content-container;
+
+        .post {
+            background: #fff;
+            padding: 10px 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+
+            .user-info {
+                padding: 10px 0;
+                display: flex;
+                align-items: center;
+                font-size: 20px;
+                img {
+                    height: 40px;
+                    width: 40px;
+                    border-radius: 50%;
+                    object-fit: cover;
+                }
+                a {
+                    text-decoration: none;
+                    color: inherit;
+                    margin-left: 10px;
+    
+                    &:hover {
+                        text-decoration: underline;
+                    }
+                }
+            }
+
+            .description {
+                margin: 10px 0;
+                font-size: 18px;
+            }
+
+            .post-image {
+                    max-width: 100%;
+                    max-height: 300px;
+            }
+
+            .likes {
+                @include likes;
+            }
+        }
+    }
+}
