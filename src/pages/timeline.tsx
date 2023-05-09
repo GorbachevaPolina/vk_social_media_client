@@ -1,33 +1,65 @@
-import React, {FC, useEffect} from 'react'
+import React, {FC, useEffect, useState} from 'react'
 import Navigation from '../components/navigation/navigation'
 import { useDispatch, useSelector } from '../services/types/store'
 import './timeline.scss'
-import { getTimelineReq } from '../services/actions/timeline'
 import filledHeart from '../images/filled-heart.svg'
 import heart from '../images/heart.svg'
 import noProfilePic from '../images/no-profile-pic.svg'
-import { likeTimeline } from '../services/actions/timeline'
+// import { likeTimeline } from '../services/actions/timeline'
 import { Link } from 'react-router-dom'
+import InfiniteScroll from 'react-infinite-scroll-component';
+import { TTimelinePost } from '../services/types/timeline'
+import { getTimeline, likeTimeline } from '../services/utils/timeline'
 
 const Timeline: FC = () => {
     const dispatch = useDispatch()
-    const { timeline } = useSelector((store) => store.timeline)
     const { user } = useSelector((store) => store.user)
+    const [offset, setOffset] = useState(0)
+    // const [isLoading, setIsLoading] = useState(false)
+    const [hasMore, setHasMore] = useState(false)
+    const [posts, setPosts] = useState<TTimelinePost[]>([])
 
     const handleLike = (id: string) => {
-        dispatch(likeTimeline(id, user!._id))
+        // dispatch(likeTimeline(id, user!._id))
+        likeTimeline(id);
+        setPosts(posts.map((item) => {
+            if (item._id === id) {
+                if(!item.likes.includes(user!._id))
+                    item.likes.push(user!._id)
+                else item.likes = item.likes.filter(item => item !== user!._id)
+            }
+            return item
+        }))
+    }
+
+    const fetchPosts = async () => {
+        // setOffset(prev=>prev+5)
+        // dispatch(getTimelineReq(offset))
+        let res = await getTimeline(offset);
+        console.log(res.length)
+        setPosts([...posts, ...res])
+        setOffset(prev=>prev+5)
+        setHasMore(res.length > 0)
     }
 
     useEffect(() => {
-        dispatch(getTimelineReq())
-    }, [dispatch])
+        // dispatch(getTimelineReq(offset))
+        // setOffset(5)
+        fetchPosts()
+    }, [])
 
     return(
         <div className='timeline-container'>
             <Navigation />
             <div className='timeline-content-container'>
+                <InfiniteScroll
+                    dataLength={posts.length}
+                    next={fetchPosts}
+                    hasMore={hasMore}
+                    loader={<p style={{textAlign: "center"}}>Loading...</p>}
+                >
                 {
-                    timeline && timeline.map((item) => {
+                    posts && posts.map((item) => {
                         return(
                             <div key={item._id} className='post'>
                                 <div className='user-info'>
@@ -52,6 +84,7 @@ const Timeline: FC = () => {
                         )
                     })
                 }
+                </InfiniteScroll>
             </div>
         </div>
     )

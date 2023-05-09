@@ -46,6 +46,9 @@
             margin: 20px 0;
             padding: 20px 30px;
             border-radius: 10px;
+            p {
+                margin-bottom: 20px;
+            }
             .likes {
                 @include likes;
             }
