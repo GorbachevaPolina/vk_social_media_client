@@ -5,11 +5,6 @@
     @include content-container;
 
     .profile-content-container {
-        // flex: 1;
-        // background: $blue;
-        // border-radius: 10px;
-        // padding: 30px 40px;
-        // color: $dark-blue;
         @include right-side-content-container;
 
         .user-info {

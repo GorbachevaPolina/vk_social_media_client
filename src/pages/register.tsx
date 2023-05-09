@@ -3,7 +3,6 @@ import "./auth.scss"
 import { useDispatch } from '../services/types/store';
 import { register } from '../services/actions/user';
 import { Link } from 'react-router-dom';
-import { TRegInfo } from '../services/types/user';
 
 const Register: FC = () => {
     const dispatch = useDispatch();

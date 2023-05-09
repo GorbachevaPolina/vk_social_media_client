@@ -1,5 +1,4 @@
 import React from 'react';
-import './app.scss';
 import { Switch, useLocation } from 'react-router-dom'
 import Register from '../../pages/register';
 import Login from '../../pages/login';
@@ -15,8 +14,6 @@ function App() {
   const location = useLocation();
   return (
     <>
-      {/* <HashRouter> */}
-        {/* {location.pathname === '/register' && location.pathname === '/login' && <Header />} */}
         {
           location.pathname === '/register' || location.pathname === '/login' ?
           null :
@@ -45,7 +42,6 @@ function App() {
             <Login />
           </ProtectedRoute>
         </Switch>
-      {/* </HashRouter> */}
     </>
   );
 }

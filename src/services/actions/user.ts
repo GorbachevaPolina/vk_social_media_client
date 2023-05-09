@@ -1,5 +1,5 @@
 import { AppDispatch, AppThunk } from "../types/store";
-import { TLoginInfo, TRegInfo, TUserInfo } from "../types/user";
+import { TLoginInfo, TUserInfo } from "../types/user";
 import { URL } from "../utils/URL";
 import { getCookie, setCookie } from "../utils/cookies";
 import { checkResponse } from "../utils/response";
@@ -82,9 +82,6 @@ export function register(user: FormData): AppThunk {
             `${URL}/api/auth/register`,
             {
                 method: "POST",
-                // headers: {
-                //     "Content-Type": "application/json"
-                // },
                 body: user
             }
         )

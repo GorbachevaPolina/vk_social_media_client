@@ -1,26 +1,22 @@
 import React, {FC, useEffect, useState} from 'react'
 import Navigation from '../components/navigation/navigation'
-import { useDispatch, useSelector } from '../services/types/store'
+import { useSelector } from '../services/types/store'
 import './timeline.scss'
 import filledHeart from '../images/filled-heart.svg'
 import heart from '../images/heart.svg'
 import noProfilePic from '../images/no-profile-pic.svg'
-// import { likeTimeline } from '../services/actions/timeline'
 import { Link } from 'react-router-dom'
 import InfiniteScroll from 'react-infinite-scroll-component';
 import { TTimelinePost } from '../services/types/timeline'
 import { getTimeline, likeTimeline } from '../services/utils/timeline'
 
 const Timeline: FC = () => {
-    const dispatch = useDispatch()
     const { user } = useSelector((store) => store.user)
     const [offset, setOffset] = useState(0)
-    // const [isLoading, setIsLoading] = useState(false)
     const [hasMore, setHasMore] = useState(false)
     const [posts, setPosts] = useState<TTimelinePost[]>([])
 
     const handleLike = (id: string) => {
-        // dispatch(likeTimeline(id, user!._id))
         likeTimeline(id);
         setPosts(posts.map((item) => {
             if (item._id === id) {
@@ -33,8 +29,6 @@ const Timeline: FC = () => {
     }
 
     const fetchPosts = async () => {
-        // setOffset(prev=>prev+5)
-        // dispatch(getTimelineReq(offset))
         let res = await getTimeline(offset);
         console.log(res.length)
         setPosts([...posts, ...res])
@@ -43,8 +37,6 @@ const Timeline: FC = () => {
     }
 
     useEffect(() => {
-        // dispatch(getTimelineReq(offset))
-        // setOffset(5)
         fetchPosts()
     }, [])
 
