@@ -5,8 +5,8 @@ export type TUserInfo = {
     "age": string;
     "city": string;
     "university": string;
-    "createdAt": string;
-    "__v": number
+    // "createdAt": string;
+    // "__v": number
 }
 // export type TUserInfo = {
 //     "username": string;
