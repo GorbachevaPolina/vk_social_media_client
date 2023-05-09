@@ -49,7 +49,8 @@ export interface IGetPeopleFailed {
 export interface IGetPeopleSuccess {
     readonly type: typeof GET_PEOPLE_SUCCESS,
     readonly friends_req: TFriends[],
-    readonly friends_pending: TFriends[]
+    readonly friends_pending: TFriends[],
+    readonly friends: TFriends[]
 }
 export interface IAcceptFriendRequest {
     readonly type: typeof ACCEPT_FRIEND_REQUEST,
@@ -172,7 +173,8 @@ export function getAllPeople(): AppThunk {
             dispatch({
                 type: GET_PEOPLE_SUCCESS,
                 friends_pending: result.friends_pending,
-                friends_req: result.friends_req
+                friends_req: result.friends_req,
+                friends: result.friends
             })
         })
         .catch((error) => dispatch({

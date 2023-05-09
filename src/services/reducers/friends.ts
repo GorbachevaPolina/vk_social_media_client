@@ -90,7 +90,8 @@ export const friendsReducer = (state = initialState, action: TFriendsActions): T
                 ...state,
                 isPeopleRequest: false,
                 friends_req: action.friends_req,
-                friends_pending: action.friends_pending
+                friends_pending: action.friends_pending,
+                friends: action.friends
             }
         }
         case ACCEPT_FRIEND_REQUEST: {
