@@ -62,7 +62,7 @@ const OtherProfile: FC = () => {
                         <section className='user-info'>
                             {
                                 userInfo?.profilePicture ?
-                                    <img src={`https://vk-web.onrender.com/${userInfo.profilePicture}`} alt="profile"/> :
+                                    <img src={`https://fair-gold-crane-tie.cyclic.app/${userInfo.profilePicture}`} alt="profile"/> :
                                     <img src={noProfilePic} alt="no profile"/>
                             }
                             <div>
@@ -87,7 +87,7 @@ const OtherProfile: FC = () => {
                                 return (
                                     <div key={item._id} className='post'>
                                         <p>{item.description}</p>
-                                        {item.image && <img src={`https://vk-web.onrender.com/${item.image}`} alt="post"/>}
+                                        {item.image && <img src={`https://fair-gold-crane-tie.cyclic.app/${item.image}`} alt="post"/>}
                                         <div className='likes'>
                                             <span>{item.likes.length}</span>
                                             <img

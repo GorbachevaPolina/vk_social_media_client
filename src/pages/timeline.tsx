@@ -63,13 +63,13 @@ const Timeline: FC = () => {
                                         <div className='user-info'>
                                             {
                                                 item?.profilePicture ?
-                                                    <img src={`https://vk-web.onrender.com/${item.profilePicture}`} alt="profile"/> :
+                                                    <img src={`https://fair-gold-crane-tie.cyclic.app/${item.profilePicture}`} alt="profile"/> :
                                                     <img src={noProfilePic} alt="no profile"/>
                                             }
                                             <Link to={`/${item.userId}/profile`}><p>{item.username}</p></Link>
                                         </div>
                                         <p className='description'>{item.description}</p>
-                                        {item.image && <img src={`https://vk-web.onrender.com/${item.image}`} alt="post" className='post-image'/>}
+                                        {item.image && <img src={`https://fair-gold-crane-tie.cyclic.app/${item.image}`} alt="post" className='post-image'/>}
                                         <div className='likes'>
                                             <span>{item.likes.length}</span>
                                             <img 
