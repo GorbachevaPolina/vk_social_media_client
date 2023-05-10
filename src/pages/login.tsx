@@ -10,13 +10,16 @@ const Login: FC = () => {
         email: "",
         password: ""
     })
-    const { isLoginFailed } = useSelector((store) => store.user)
+    const { isLoginFailed, isGetRequest } = useSelector((store) => store.user)
 
     const handleLogin = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         dispatch(login(inputs))
     }
 
+    if(isGetRequest) {
+        return <p style={{textAlign: "center"}}>Loading...</p>
+    }
     return (
         <form className='auth-form' onSubmit={handleLogin}>
             <h1>Вход</h1>
