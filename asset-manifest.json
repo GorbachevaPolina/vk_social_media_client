@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/vk_social_media_client/static/css/main.cca0d8fd.css",
-    "main.js": "/vk_social_media_client/static/js/main.8a45f032.js",
+    "main.js": "/vk_social_media_client/static/js/main.3583aa9b.js",
     "static/media/logo.svg": "/vk_social_media_client/static/media/logo.10bf8f3b50385180ad6846dbd36e887b.svg",
     "static/media/no-profile-pic.svg": "/vk_social_media_client/static/media/no-profile-pic.7a69ff0b8fcc1d201dc171fe657f3b7a.svg",
     "static/media/clip.svg": "/vk_social_media_client/static/media/clip.8ae18e11d62c10c34296117ee1c5e59a.svg",
@@ -9,10 +9,10 @@
     "static/media/heart.svg": "/vk_social_media_client/static/media/heart.c7c92144148ce8210aeb87da1835ee6a.svg",
     "static/media/filled-heart.svg": "/vk_social_media_client/static/media/filled-heart.f598ab442533a3ebb9a38c79cd03a5af.svg",
     "main.cca0d8fd.css.map": "/vk_social_media_client/static/css/main.cca0d8fd.css.map",
-    "main.8a45f032.js.map": "/vk_social_media_client/static/js/main.8a45f032.js.map"
+    "main.3583aa9b.js.map": "/vk_social_media_client/static/js/main.3583aa9b.js.map"
   },
   "entrypoints": [
     "static/css/main.cca0d8fd.css",
-    "static/js/main.8a45f032.js"
+    "static/js/main.3583aa9b.js"
   ]
 }
