@@ -13,7 +13,7 @@ import { getTimeline, likeTimeline } from '../services/utils/timeline'
 const Timeline: FC = () => {
     const { user } = useSelector((store) => store.user)
     const [offset, setOffset] = useState(0)
-    const [hasMore, setHasMore] = useState(false)
+    const [hasMore, setHasMore] = useState(true)
     const [posts, setPosts] = useState<TTimelinePost[]>([])
 
     const handleLike = (id: string) => {
@@ -46,7 +46,9 @@ const Timeline: FC = () => {
                 <h1>Новости</h1>
                 {
                     posts.length === 0 ? 
+                    !hasMore ?
                     <p>Нет новостей. Добавьте людей в друзья, чтобы видеть новости.</p> :
+                    <p>Loading...</p> :
                     (
                         <InfiniteScroll
                             dataLength={posts.length}
