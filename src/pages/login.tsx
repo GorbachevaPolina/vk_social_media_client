@@ -10,14 +10,14 @@ const Login: FC = () => {
         email: "",
         password: ""
     })
-    const { isLoginFailed, isGetRequest } = useSelector((store) => store.user)
+    const { isLoginFailed, isGetRequest, isLoginRequest } = useSelector((store) => store.user)
 
     const handleLogin = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         dispatch(login(inputs))
     }
 
-    if(isGetRequest) {
+    if(isGetRequest || isLoginRequest) {
         return <p style={{textAlign: "center"}}>Loading...</p>
     }
     return (

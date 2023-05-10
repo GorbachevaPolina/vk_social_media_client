@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom';
 
 const Register: FC = () => {
     const dispatch = useDispatch();
-    const { isRegisterFailed } = useSelector((store) => store.user)
+    const { isRegisterFailed, isRegisterRequest } = useSelector((store) => store.user)
     const [inputs, setInputs] = useState({
         username: "",
         email: "",
@@ -36,6 +36,9 @@ const Register: FC = () => {
         }
     }
 
+    if(isRegisterRequest) {
+        return <p style={{textAlign: "center"}}>Loading...</p>
+    }
     return (
         <form className='auth-form' onSubmit={handleRegister}>
             <h1>Регистрация</h1>
