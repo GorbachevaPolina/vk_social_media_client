@@ -6,6 +6,8 @@ Client side for social media made for VK summer internship.
 
 ## Functionality
 User can register and login, search by people and add them to friends, make posts, view posts of their friends.
+* Authorization with JWT tokens
+* Infinite scroll in timeline
 
 ## Technologies
 * React
@@ -13,3 +15,8 @@ User can register and login, search by people and add them to friends, make post
 * Redux
 * ReduxThunk
 * SCSS
+
+## TODO
+* Enlarge image on click
+* Add comments to posts
+* Chat with WebSocket
