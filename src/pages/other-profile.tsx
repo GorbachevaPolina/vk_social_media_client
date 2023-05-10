@@ -14,7 +14,7 @@ import { TFriends } from "../services/types/friends";
 const OtherProfile: FC = () => {
     const dispatch = useDispatch();
     const { id } = useParams<{id: string}>();
-    const { userInfo, posts } = useSelector((store) => store.otherUser)
+    const { userInfo, posts, isRequest, isFailed } = useSelector((store) => store.otherUser)
     const { user } = useSelector((store) => store.user)
     const {friends, friends_req, friends_pending} = useSelector((store) => store.friends)
 
@@ -53,47 +53,55 @@ const OtherProfile: FC = () => {
         <div className="profile-container">
             <Navigation />
             <div className="profile-content-container">
-            <section className='user-info'>
-                    {
-                        userInfo?.profilePicture ?
-                            <img src={`http://localhost:8800/${userInfo.profilePicture}`} alt="profile"/> :
-                            <img src={noProfilePic} alt="no profile"/>
-                    }
-                    <div>
-                        <p className='username'>{userInfo?.username}</p>
-                        <p className='description'>Город: {userInfo?.city}</p>
-                        <p className='description'>Возраст: {userInfo?.age}</p>
-                        <p className='description'>Место обучения: {userInfo?.university}</p>
-                    </div> 
-                    {
-                        friends?.find(item => item._id === userInfo._id) ? 
-                            <button type="button" onClick={() => deleteFriend(userInfo._id)}>Удалить из друзей</button> :
-                            friends_req?.find(item=>item._id===userInfo._id) ?
-                            <button type="button" onClick={() => addToFriends(userInfo._id)}>Принять заявку</button> :
-                            friends_pending?.find(item=>item._id===userInfo._id) ? 
-                            <button type="button" onClick={() => cancelFriendRequest(userInfo._id)}>Отменить заявку</button> :
-                            <button type="button" onClick={() => sendFriendRequest(userInfo)}>Добавить в друзья</button>
-                    }
-                </section>
-                <section className='user-posts'>
-                    <h1>Посты {userInfo.username}:</h1>
-                    {posts && posts.map((item) => {
-                        return (
-                            <div key={item._id} className='post'>
-                                <p>{item.description}</p>
-                                {item.image && <img src={`http://localhost:8800/${item.image}`} alt="post"/>}
-                                <div className='likes'>
-                                    <span>{item.likes.length}</span>
-                                    <img
-                                        src={item.likes.includes(user!._id) ? filledHeart : heart}
-                                        alt="like"
-                                        onClick={() => handleLike(item._id)}
-                                    />
-                                </div>
-                            </div>
-                        )
-                    })}
-                </section>
+                {
+                    isRequest ?
+                    <p className="p-center">Loading...</p> :
+                    isFailed ?
+                    <p className="p-center">Что-то пошло не так. Пожалуйста, перезагрузите страницу.</p> :
+                    <>
+                        <section className='user-info'>
+                            {
+                                userInfo?.profilePicture ?
+                                    <img src={`http://localhost:8800/${userInfo.profilePicture}`} alt="profile"/> :
+                                    <img src={noProfilePic} alt="no profile"/>
+                            }
+                            <div>
+                                <p className='username'>{userInfo?.username}</p>
+                                <p className='description'>Город: {userInfo?.city}</p>
+                                <p className='description'>Возраст: {userInfo?.age}</p>
+                                <p className='description'>Место обучения: {userInfo?.university}</p>
+                            </div> 
+                            {
+                                friends?.find(item => item._id === userInfo._id) ? 
+                                    <button type="button" onClick={() => deleteFriend(userInfo._id)}>Удалить из друзей</button> :
+                                    friends_req?.find(item=>item._id===userInfo._id) ?
+                                    <button type="button" onClick={() => addToFriends(userInfo._id)}>Принять заявку</button> :
+                                    friends_pending?.find(item=>item._id===userInfo._id) ? 
+                                    <button type="button" onClick={() => cancelFriendRequest(userInfo._id)}>Отменить заявку</button> :
+                                    <button type="button" onClick={() => sendFriendRequest(userInfo)}>Добавить в друзья</button>
+                            }
+                        </section>
+                        <section className='user-posts'>
+                            <h1>Посты {userInfo.username}:</h1>
+                            {posts && posts.map((item) => {
+                                return (
+                                    <div key={item._id} className='post'>
+                                        <p>{item.description}</p>
+                                        {item.image && <img src={`http://localhost:8800/${item.image}`} alt="post"/>}
+                                        <div className='likes'>
+                                            <span>{item.likes.length}</span>
+                                            <img
+                                                src={item.likes.includes(user!._id) ? filledHeart : heart}
+                                                alt="like"
+                                                onClick={() => handleLike(item._id)}
+                                            />
+                                        </div>
+                                    </div>
+                                )
+                            })}
+                        </section>
+                    </>
+                }
             </div>
         </div>
     )

@@ -39,4 +39,31 @@
             }
         }
     }
+
+    .error {
+        color: red;
+    }
+}
+
+.pfp-upload {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    width: 65%;
+
+    input[type=file]::file-selector-button {
+        background-color: #fff;
+        color: $dark-blue;
+        border: 0px;
+        border-right: 1px solid $blue;
+        padding: 10px 15px;
+        margin-right: 20px;
+    }
+
+    input[type=file]::file-selector-button:hover {
+        background-color: $green;
+        border: 0px;
+        border-right: 1px solid $blue;
+        cursor: pointer;
+      }
 }

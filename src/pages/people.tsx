@@ -11,6 +11,7 @@ import { Link } from 'react-router-dom';
 const People: FC = () => {
     const dispatch = useDispatch();
     const { friends, friends_req, friends_pending } = useSelector((store) => store.friends)
+    const { user } = useSelector((store) => store.user)
     const [isRequests, setIsRequests] = useState(false)
     const [isPending, setIsPending] = useState(false)
     const [input, setInput] = useState("")
@@ -130,6 +131,8 @@ const People: FC = () => {
                                             <button type="button" onClick={() => addToFriends(person._id)}>Принять заявку</button> :
                                             friends_pending?.find(item=>item._id===person._id) ? 
                                             <button type="button" onClick={() => cancelFriendRequest(person._id)}>Отменить</button> :
+                                            user?._id === person._id ? 
+                                            <span>Это вы</span> :
                                             <button type="button" onClick={() => sendFriendRequest(person)}>Добавить в друзья</button>
                                     }
                                 </div>

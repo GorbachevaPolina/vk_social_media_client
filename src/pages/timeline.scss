@@ -6,6 +6,9 @@
 
     .timeline-content-container {
         @include right-side-content-container;
+        h1 {
+            margin-bottom: 20px;
+        }
 
         .post {
             background: #fff;

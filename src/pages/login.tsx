@@ -1,6 +1,6 @@
 import React, {FC, useState} from "react";
 import './auth.scss'
-import { useDispatch } from "../services/types/store";
+import { useDispatch, useSelector } from "../services/types/store";
 import { login } from "../services/actions/user";
 import { Link } from "react-router-dom";
 
@@ -10,6 +10,7 @@ const Login: FC = () => {
         email: "",
         password: ""
     })
+    const { isLoginFailed } = useSelector((store) => store.user)
 
     const handleLogin = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
@@ -36,6 +37,9 @@ const Login: FC = () => {
                 Еще нет аккаунта? 
                 <Link to="/register">Зарегистрироваться</Link>
             </p>
+            {
+                isLoginFailed && <p className="error">Пожалуйста, проверьте, что все поля заполнены правильно.</p>
+            }
         </form>
     )
 }

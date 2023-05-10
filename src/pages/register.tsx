@@ -1,11 +1,12 @@
 import React, {FC, useState} from 'react';
 import "./auth.scss"
-import { useDispatch } from '../services/types/store';
+import { useDispatch, useSelector } from '../services/types/store';
 import { register } from '../services/actions/user';
 import { Link } from 'react-router-dom';
 
 const Register: FC = () => {
     const dispatch = useDispatch();
+    const { isRegisterFailed } = useSelector((store) => store.user)
     const [inputs, setInputs] = useState({
         username: "",
         email: "",
@@ -40,7 +41,7 @@ const Register: FC = () => {
             <h1>Регистрация</h1>
             <input 
                 type="text"
-                placeholder="Введите имя"
+                placeholder="Введите имя (должно быть уникальным)"
                 onChange={(e) => setInputs({...inputs, username: e.target.value})}
                 value={inputs.username}
             />
@@ -74,22 +75,23 @@ const Register: FC = () => {
                 onChange={(e) => setInputs({...inputs, university: e.target.value})}
                 value={inputs.university}
             />
-            <div className="image-upload">
-                    <label htmlFor="file-input">
-
-                    </label>
+            <div className="pfp-upload">
+                <p>Выберите аватарку: </p>
                     <input 
                         id="file-input" 
                         type="file" 
                         onChange={(e) => uploadImage(e)} 
                         onClick={(e)=> e.currentTarget.value = ""}
                     />
-                </div>
+            </div>
             <button type="submit">Зарегистрироваться</button>
             <p>
                 Уже есть аккаунт?
                 <Link to="/login">Войти</Link>
             </p>
+            {
+                isRegisterFailed && <p className='error'>Пожалуйста, проверьте, что все поля заполнены правильно.</p>
+            }
         </form>
     )
 }

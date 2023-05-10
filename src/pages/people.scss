@@ -44,6 +44,10 @@
             background: #fff;
             padding: 10px 20px;
             @include person-info;
+
+            span {
+                margin-left: auto;
+            }
         }
 
         .search-bar {

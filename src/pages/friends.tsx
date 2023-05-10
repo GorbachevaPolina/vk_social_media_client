@@ -8,7 +8,7 @@ import { Link } from "react-router-dom";
 
 const Friends: FC = () => {
     const dispatch = useDispatch()
-    const { friends } = useSelector((store) => store.friends)
+    const { friends, isFriendsRequest, isFriendsFailed } = useSelector((store) => store.friends)
 
     const deleteFriend = (friendId: string) => {
         dispatch(deleteFriendReq(friendId))
@@ -23,6 +23,12 @@ const Friends: FC = () => {
             <Navigation />
             <div className="friends-content-container">
                 {
+                    isFriendsRequest ?
+                    <p className="p-center">Loading...</p> :
+                    isFriendsFailed ?
+                    <p className="p-center">Не удалось загрузить список друзей. Пожалуйста, перезагрузите страницу.</p> :
+                    friends?.length === 0 ? 
+                    <p className="p-center">Пока нет друзей.</p> : 
                     friends?.map((friend) => {
                         return(
                             <div className="friend-info" key={friend._id}>
