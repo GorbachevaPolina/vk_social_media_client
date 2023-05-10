@@ -41,7 +41,7 @@ const Register: FC = () => {
             <h1>Регистрация</h1>
             <input 
                 type="text"
-                placeholder="Введите имя (должно быть уникальным)"
+                placeholder="Введите имя"
                 onChange={(e) => setInputs({...inputs, username: e.target.value})}
                 value={inputs.username}
             />
