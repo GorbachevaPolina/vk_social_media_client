@@ -10,6 +10,7 @@ import heart from '../images/heart.svg'
 import { likeOther } from "../services/actions/other-profile";
 import { addFriend, cancelFriendReq, deleteFriendReq, sendFriendReq } from "../services/actions/friends";
 import { TFriends } from "../services/types/friends";
+import { URL } from "../services/utils/URL";
 
 const OtherProfile: FC = () => {
     const dispatch = useDispatch();
@@ -62,7 +63,7 @@ const OtherProfile: FC = () => {
                         <section className='user-info'>
                             {
                                 userInfo?.profilePicture ?
-                                    <img src={`https://fair-gold-crane-tie.cyclic.app/${userInfo.profilePicture}`} alt="profile"/> :
+                                    <img src={`${URL}/${userInfo.profilePicture}`} alt="profile"/> :
                                     <img src={noProfilePic} alt="no profile"/>
                             }
                             <div>
@@ -87,7 +88,7 @@ const OtherProfile: FC = () => {
                                 return (
                                     <div key={item._id} className='post'>
                                         <p>{item.description}</p>
-                                        {item.image && <img src={`https://fair-gold-crane-tie.cyclic.app/${item.image}`} alt="post"/>}
+                                        {item.image && <img src={`${URL}/${item.image}`} alt="post"/>}
                                         <div className='likes'>
                                             <span>{item.likes.length}</span>
                                             <img

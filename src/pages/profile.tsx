@@ -7,6 +7,7 @@ import { getUserPosts, like } from '../services/actions/user-posts'
 import CreatePost from '../components/create-post/create-post'
 import filledHeart from '../images/filled-heart.svg'
 import heart from '../images/heart.svg'
+import { URL } from '../services/utils/URL'
 
 const Profile: FC = () => {
     const { user } = useSelector((store) => store.user)
@@ -31,7 +32,7 @@ const Profile: FC = () => {
                 <section className='user-info'>
                     {
                         user?.profilePicture ?
-                            <img src={`https://fair-gold-crane-tie.cyclic.app/${user.profilePicture}`} alt="profile"/> :
+                            <img src={`${URL}/${user.profilePicture}`} alt="profile"/> :
                             <img src={noProfilePic} alt="no profile"/>
                     }
                     <div>
@@ -48,7 +49,7 @@ const Profile: FC = () => {
                         return (
                             <div key={item._id} className='post'>
                                 <p>{item.description}</p>
-                                {item.image && <img src={`https://fair-gold-crane-tie.cyclic.app/${item.image}`} alt="post"/>}
+                                {item.image && <img src={`${URL}/${item.image}`} alt="post"/>}
                                 <div className='likes'>
                                     <span>{item.likes.length}</span>
                                     <img 

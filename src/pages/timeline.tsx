@@ -9,6 +9,7 @@ import { Link } from 'react-router-dom'
 import InfiniteScroll from 'react-infinite-scroll-component';
 import { TTimelinePost } from '../services/types/timeline'
 import { getTimeline, likeTimeline } from '../services/utils/timeline'
+import { URL } from '../services/utils/URL'
 
 const Timeline: FC = () => {
     const { user } = useSelector((store) => store.user)
@@ -63,13 +64,13 @@ const Timeline: FC = () => {
                                         <div className='user-info'>
                                             {
                                                 item?.profilePicture ?
-                                                    <img src={`https://fair-gold-crane-tie.cyclic.app/${item.profilePicture}`} alt="profile"/> :
+                                                    <img src={`${URL}/${item.profilePicture}`} alt="profile"/> :
                                                     <img src={noProfilePic} alt="no profile"/>
                                             }
                                             <Link to={`/${item.userId}/profile`}><p>{item.username}</p></Link>
                                         </div>
                                         <p className='description'>{item.description}</p>
-                                        {item.image && <img src={`https://fair-gold-crane-tie.cyclic.app/${item.image}`} alt="post" className='post-image'/>}
+                                        {item.image && <img src={`${URL}/${item.image}`} alt="post" className='post-image'/>}
                                         <div className='likes'>
                                             <span>{item.likes.length}</span>
                                             <img 
