@@ -71,7 +71,7 @@ export function likeOther(post: string, user: string): AppThunk {
         let token = getCookie('token')
         if(token) {
             fetch(
-                `http://localhost:8800/api/posts/${post}/like`,
+                `${URL}/api/posts/${post}/like`,
                 {
                     method: "PUT",
                     headers: {

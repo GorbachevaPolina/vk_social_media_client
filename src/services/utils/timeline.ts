@@ -29,7 +29,7 @@ export const likeTimeline = async (postId: string) => {
     if(token) {
         try {
             await fetch(
-                `http://localhost:8800/api/posts/${postId}/like`,
+                `${URL}/api/posts/${postId}/like`,
                 {
                     method: "PUT",
                     headers: {

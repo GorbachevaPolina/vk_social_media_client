@@ -34,7 +34,7 @@ const Friends: FC = () => {
                             <div className="friend-info" key={friend._id}>
                                 {
                                     friend?.profilePicture ?
-                                        <img src={`http://localhost:8800/${friend.profilePicture}`} alt="profile"/> :
+                                        <img src={`http://st:8800/${friend.profilePicture}`} alt="profile"/> :
                                         <img src={noProfilePic} alt="no profile"/>
                                 }
                                 <Link to={`/${friend._id}/profile`}><p>{friend.username}</p></Link>

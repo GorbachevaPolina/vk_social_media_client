@@ -76,7 +76,7 @@ const People: FC = () => {
                                         <div key={person._id} className='person'>
                                             {
                                                 person?.profilePicture ?
-                                                    <img src={`http://localhost:8800/${person.profilePicture}`} alt="profile"/> :
+                                                    <img src={`https://vk-web.onrender.com/${person.profilePicture}`} alt="profile"/> :
                                                     <img src={noProfilePic} alt="no profile"/>
                                             }
                                             <Link to={`/${person._id}/profile`}><p>{person.username}</p></Link>
@@ -104,7 +104,7 @@ const People: FC = () => {
                                         <div key={person._id} className='person'>
                                             {
                                                 person?.profilePicture ?
-                                                    <img src={`http://localhost:8800/${person.profilePicture}`} alt="profile"/> :
+                                                    <img src={`https://vk-web.onrender.com/${person.profilePicture}`} alt="profile"/> :
                                                     <img src={noProfilePic} alt="no profile"/>
                                             }
                                             <Link to={`/${person._id}/profile`}><p>{person.username}</p></Link>
@@ -120,7 +120,7 @@ const People: FC = () => {
                                 <div key={person._id} className='person'>
                                     {
                                         person?.profilePicture ?
-                                            <img src={`http://localhost:8800/${person.profilePicture}`} alt="profile"/> :
+                                            <img src={`https://vk-web.onrender.com/${person.profilePicture}`} alt="profile"/> :
                                             <img src={noProfilePic} alt="no profile"/>
                                     }
                                     <Link to={`/${person._id}/profile`}><p>{person.username}</p></Link>

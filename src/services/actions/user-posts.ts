@@ -91,7 +91,7 @@ export function uploadPostReq(data: FormData): AppThunk {
                 type: UPLOAD_POST_REQUEST
             })
             fetch(
-                `http://localhost:8800/api/posts`,
+                `${URL}/api/posts`,
                 {
                     method: "POST",
                     headers: {
@@ -119,7 +119,7 @@ export function like(post: string): AppThunk {
         let token = getCookie('token')
         if(token) {
             fetch(
-                `http://localhost:8800/api/posts/${post}/like`,
+                `${URL}/api/posts/${post}/like`,
                 {
                     method: "PUT",
                     headers: {

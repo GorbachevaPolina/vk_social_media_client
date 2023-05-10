@@ -31,7 +31,7 @@ const Profile: FC = () => {
                 <section className='user-info'>
                     {
                         user?.profilePicture ?
-                            <img src={`http://localhost:8800/${user.profilePicture}`} alt="profile"/> :
+                            <img src={`https://vk-web.onrender.com/${user.profilePicture}`} alt="profile"/> :
                             <img src={noProfilePic} alt="no profile"/>
                     }
                     <div>
@@ -48,7 +48,7 @@ const Profile: FC = () => {
                         return (
                             <div key={item._id} className='post'>
                                 <p>{item.description}</p>
-                                {item.image && <img src={`http://localhost:8800/${item.image}`} alt="post"/>}
+                                {item.image && <img src={`https://vk-web.onrender.com/${item.image}`} alt="post"/>}
                                 <div className='likes'>
                                     <span>{item.likes.length}</span>
                                     <img 
