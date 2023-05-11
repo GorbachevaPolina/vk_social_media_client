@@ -9,6 +9,10 @@ User can register and login, search by people and add them to friends, make post
 * Authorization with JWT tokens
 * Infinite scroll in timeline
 
+to test full functionality: 
+ - email: test@gmail.com
+ - password: 123456
+
 ## Technologies
 * React
 * TypeScript
